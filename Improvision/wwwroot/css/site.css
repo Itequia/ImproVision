@@ -33,3 +33,40 @@
         display: none;
     }
 }
+
+#my-dropzone {
+	border: dashed 2px;
+	border-color: gainsboro;
+}
+
+	#my-dropzone a {
+		color: #ed1c26;
+	}
+
+	#my-dropzone i {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		z-index: 20;
+		color: white;
+		cursor: pointer;
+		text-shadow: 1px 1px 2px black;
+	}
+
+	#my-dropzone .dz-details {
+		margin-top: 25px;
+	}
+
+	#my-dropzone .dz-max-files-reached {
+		background-color: red;
+	}
+
+
+.margin-top-25 {
+	margin-top: 25px;
+}
+
+.margin-bottom-25 {
+	margin-bottom: 25px;
+}
+

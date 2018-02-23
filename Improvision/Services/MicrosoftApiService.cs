@@ -18,7 +18,7 @@ namespace Improvision.Services
         const string subscriptionKey = "ca71a50ba3264dbb8ee09228326f83ec";
 
 
-        public async Task<MicrosoftVisionAPIResult> GetImageJsonAsync(Image image)
+        public async Task<MicrosoftVisionAPIResult> GetImageJsonAsync(byte[] byteData)
         {
             HttpClient client = new HttpClient();
 
@@ -32,8 +32,6 @@ namespace Improvision.Services
             string uri = uriBase + "?" + requestParameters;
 
             // Request body. Posts a locally stored JPEG image.
-            byte[] byteData = 
-
 
             using (ByteArrayContent content = new ByteArrayContent(byteData))
             {
@@ -41,6 +39,7 @@ namespace Improvision.Services
                 HttpResponseMessage response = await client.PostAsync(uri, content);
                 string contentString = await response.Content.ReadAsStringAsync();
                 MicrosoftVisionAPIResult result = JsonConvert.DeserializeObject<MicrosoftVisionAPIResult>(contentString);
+                return result;
             }
         }
     }

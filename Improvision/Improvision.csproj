@@ -12,4 +12,20 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\basic.css" />
+    <None Include="wwwroot\css\basic.min.css" />
+    <None Include="wwwroot\css\dropzone.css" />
+    <None Include="wwwroot\css\dropzone.min.css" />
+    <None Include="wwwroot\js\dropzone-amd-module.js" />
+    <None Include="wwwroot\js\dropzone-amd-module.min.js" />
+    <None Include="wwwroot\js\dropzone.js" />
+    <None Include="wwwroot\js\dropzone.min.js" />
+    <None Include="wwwroot\js\home.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+
 </Project>

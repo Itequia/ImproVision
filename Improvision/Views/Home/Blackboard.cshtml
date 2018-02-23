@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Improvision.Models.InitialModels.word>
 
 
-<div class="blackboard" style="position:relative;width:1000px;height:1000px">
+<div class="blackboard" style="position:relative;width:1000px;height:1000px;font-family:arial narrow">
     @foreach (var item in Model)
     {
         <div class="word" style="position:absolute;
@@ -9,7 +9,8 @@
                                  height:@item.Height;
                                  top:@item.Top;
                                  left:@item.Left;
-                                 font-size:@item.Height">
+                                 font-size:@item.FontSize;
+                                 ">
             @item.text
         </div>
 

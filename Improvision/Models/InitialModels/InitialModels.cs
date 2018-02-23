@@ -54,8 +54,8 @@ namespace Improvision.Models.InitialModels
         {
             get
             {
-                return Math.Max(boundingBox[5], boundingBox[7]) -
-                       Math.Min(boundingBox[1], boundingBox[3]) + "px";
+                return average(boundingBox[5], boundingBox[7]) -
+                       average(boundingBox[1], boundingBox[3]) + "px";
             }
         }
 
@@ -63,8 +63,8 @@ namespace Improvision.Models.InitialModels
         {
             get
             {
-                return Math.Max(boundingBox[2], boundingBox[4]) -
-                       Math.Min(boundingBox[0], boundingBox[6]) + "px";
+                return average(boundingBox[2], boundingBox[4]) -
+                       average(boundingBox[0], boundingBox[6]) + "px";
             }
         }
 
@@ -72,7 +72,7 @@ namespace Improvision.Models.InitialModels
         {
             get
             {
-                return Math.Min(boundingBox[0], boundingBox[6]) + "px";
+                return average(boundingBox[0], boundingBox[6]) + "px";
             }
         }
 
@@ -80,8 +80,22 @@ namespace Improvision.Models.InitialModels
         {
             get
             {
-                return Math.Min(boundingBox[1], boundingBox[3]) + "px";
+                return average(boundingBox[1], boundingBox[3]) + "px";
             }
+        }
+
+         public string FontSize
+        {
+            get
+            {
+                double height = average(boundingBox[5], boundingBox[7]) - average(boundingBox[1], boundingBox[3]);
+                return Math.Ceiling(height * 0.7) + "px";
+            }
+        }
+
+        private int average(int a, int b)
+        {
+            return (a + b) / 2;
         }
     }
 
@@ -95,4 +109,6 @@ namespace Improvision.Models.InitialModels
         public int y { get; set; }
 
     }
+
+     
 }

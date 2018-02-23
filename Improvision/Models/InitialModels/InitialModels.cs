@@ -7,19 +7,21 @@ namespace Improvision.Models.InitialModels
 {
     public class MicrosoftVisionAPIResult
     {
-        public string language { get; set; }
-        public double textAngle { get; set; }
-        public string orientation { get; set; }
-        public List<region> regions { get; set; }
+        public string status { get; set; }
+        public bool succeeded { get; set; }
+        public bool failed { get; set; }
+        public bool finished { get; set; }
+        public recognitionResult recognitionResult { get; set; }
     }
 
-    public class region : Boxeable
+    public class recognitionResult
     {
         public List<line> lines { get; set; }
     }
 
     public class line : Boxeable
     {
+        public string text { get; set; }
         public List<word> words { get; set; }
     }
 

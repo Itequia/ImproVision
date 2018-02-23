@@ -37,7 +37,9 @@ function initDropzone() {
 				}
 			});
 
-			myDropzone.on("successmultiple", function (files, response) {
+            myDropzone.on("successmultiple", function (files, response) {
+                console.log(response);
+                $("#blackboard-container").html(response);
 				// Gets triggered when the files have successfully been sent.
 				//var redirect = $('#btn-upload').data('url');
 				//window.location = redirect;

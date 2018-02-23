@@ -45,7 +45,7 @@ namespace Improvision.Controllers
                     }
                 }
             }
-            return View("Index",result.recognitionResult.lines.SelectMany(l => l.words));
+            return PartialView("Blackboard",result.recognitionResult.lines.SelectMany(l => l.words));
         }
         static byte[] GetImageAsByteArray(Stream fileStream)
         {

@@ -50,37 +50,37 @@ namespace Improvision.Models.InitialModels
             }
         }
 
-        public int Height
+        public string Height
         {
             get
             {
                 return Math.Max(boundingBox[5], boundingBox[7]) -
-                       Math.Min(boundingBox[1], boundingBox[3]);
+                       Math.Min(boundingBox[1], boundingBox[3]) + "px";
             }
         }
 
-        public int Width
+        public string Width
         {
             get
             {
                 return Math.Max(boundingBox[2], boundingBox[4]) -
-                       Math.Min(boundingBox[0], boundingBox[6]);
+                       Math.Min(boundingBox[0], boundingBox[6]) + "px";
             }
         }
 
-        public int Left
+        public string Left
         {
             get
             {
-                return Math.Min(boundingBox[0], boundingBox[6]);
+                return Math.Min(boundingBox[0], boundingBox[6]) + "px";
             }
         }
 
-        public int Top
+        public string Top
         {
             get
             {
-                return Math.Min(boundingBox[1], boundingBox[3]);
+                return Math.Min(boundingBox[1], boundingBox[3]) + "px";
             }
         }
     }

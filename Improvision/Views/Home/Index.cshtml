@@ -42,19 +42,7 @@
 </div>
 
 
-@if(Model != null) { 
-    <div class="blackboard" style="position:relative;width:1000;height:1000">
-        @foreach (var item in Model)
-        {
-            <div class="word" style="position:absolute;
-                                     width:@item.Width;
-                                     height:@item.Height;
-                                     top:@item.Top;
-                                     left:@item.Left;
-                                     font-size:@item.Height">
-                @item.text
-            </div>
 
-        }
-    </div>
-}
+<div id="blackboard-container"  style="width:1000px;height:1000px">
+
+</div>

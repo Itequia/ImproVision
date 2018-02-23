@@ -1,10 +1,7 @@
 ﻿@model IEnumerable<Improvision.Models.InitialModels.word>
 
-<p>
-    <a asp-action="Create">Your Blackboard</a>
-</p>
 
-<div class="blackboard" style="position:relative;width:1000;height:1000">
+<div class="blackboard" style="position:relative;width:1000px;height:1000px">
     @foreach (var item in Model)
     {
         <div class="word" style="position:absolute;

@@ -18,30 +18,30 @@ namespace Improvision.Services
         const string subscriptionKey = "ca71a50ba3264dbb8ee09228326f83ec";
 
 
-        public async Task<MicrosoftVisionAPIResult> GetImageJsonAsync(Image image)
-        {
-            HttpClient client = new HttpClient();
+        //public async Task<MicrosoftVisionAPIResult> GetImageJsonAsync(Image image)
+        //{
+        //    HttpClient client = new HttpClient();
 
-            // Request headers.
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
+        //    // Request headers.
+        //    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
 
-            // Request parameters.
-            string requestParameters = "language=unk&detectOrientation=true&handwriting=true";
+        //    // Request parameters.
+        //    string requestParameters = "language=unk&detectOrientation=true&handwriting=true";
 
-            // Assemble the URI for the REST API Call.
-            string uri = uriBase + "?" + requestParameters;
+        //    // Assemble the URI for the REST API Call.
+        //    string uri = uriBase + "?" + requestParameters;
 
-            // Request body. Posts a locally stored JPEG image.
-            byte[] byteData = 
+        //    // Request body. Posts a locally stored JPEG image.
+        //    byte[] byteData = 
 
 
-            using (ByteArrayContent content = new ByteArrayContent(byteData))
-            {
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-                HttpResponseMessage response = await client.PostAsync(uri, content);
-                string contentString = await response.Content.ReadAsStringAsync();
-                MicrosoftVisionAPIResult result = JsonConvert.DeserializeObject<MicrosoftVisionAPIResult>(contentString);
-            }
-        }
+        //    using (ByteArrayContent content = new ByteArrayContent(byteData))
+        //    {
+        //        content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+        //        HttpResponseMessage response = await client.PostAsync(uri, content);
+        //        string contentString = await response.Content.ReadAsStringAsync();
+        //        MicrosoftVisionAPIResult result = JsonConvert.DeserializeObject<MicrosoftVisionAPIResult>(contentString);
+        //    }
+        //}
     }
 }

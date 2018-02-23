@@ -41,12 +41,46 @@ namespace Improvision.Models.InitialModels
                 return new BoundingBox
                 {
                     coordenadas = new Coordenada[] {
-                          new Coordenada{x = boundingBox[0], y = boundingBox[1]},
-                          new Coordenada{x = boundingBox[2], y = boundingBox[3]},
-                          new Coordenada{x = boundingBox[4], y = boundingBox[5]},
-                          new Coordenada{x = boundingBox[6], y = boundingBox[7]},
+                          new Coordenada{x = boundingBox[0], y = boundingBox[1]}, // 0
+                          new Coordenada{x = boundingBox[2], y = boundingBox[3]}, // 1
+                          new Coordenada{x = boundingBox[4], y = boundingBox[5]}, // 2
+                          new Coordenada{x = boundingBox[6], y = boundingBox[7]}, // 3
                     }
                 };
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                return Math.Max(boundingBox[5], boundingBox[7]) -
+                       Math.Min(boundingBox[1], boundingBox[3]);
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return Math.Max(boundingBox[2], boundingBox[4]) -
+                       Math.Min(boundingBox[0], boundingBox[6]);
+            }
+        }
+
+        public int Left
+        {
+            get
+            {
+                return Math.Min(boundingBox[0], boundingBox[6]);
+            }
+        }
+
+        public int Top
+        {
+            get
+            {
+                return Math.Min(boundingBox[1], boundingBox[3]);
             }
         }
     }

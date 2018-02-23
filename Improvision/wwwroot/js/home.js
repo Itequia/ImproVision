@@ -39,8 +39,8 @@ function initDropzone() {
 
 			myDropzone.on("successmultiple", function (files, response) {
 				// Gets triggered when the files have successfully been sent.
-				var redirect = $('#btn-upload').data('url');
-				window.location = redirect;
+				//var redirect = $('#btn-upload').data('url');
+				//window.location = redirect;
 			});
 
 			myDropzone.on("errormultiple", function (files, response) {

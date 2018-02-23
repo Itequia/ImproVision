@@ -1,57 +1,60 @@
-﻿@{
+﻿@model IEnumerable<Improvision.Models.InitialModels.word>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-
-@*<form method="post" enctype="multipart/form-data" asp-controller="UploadFiles" asp-action="Index">
-	<div class="form-group">
-		<div class="col-md-10">
-			<p>Upload one or more files using this form:</p>
-			<input type="file" name="files" multiple />
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-md-10">
-			<input type="submit" value="Upload" />
-		</div>
-	</div>
-</form>*@
-
-
 <div class="row margin-top-25 ">
-	<div class="col-xs-12" id="upload-files">
-		<div class="margin-bottom-20 margin-top-25 ">
+    <div class="col-xs-12" id="upload-files">
+        <div class="margin-bottom-20 margin-top-25 ">
 
-			<label class="control-label margin-10">Upload you pictures: </label>
+            <label class="control-label margin-10">Upload you pictures: </label>
 
-			<form class="dropzone" id="my-dropzone" method="post" data-url="@Url.Action("GetUploadedFiles", "Home")">
-				<div class="dz-message">
-					DragFiles <a>SelectFile</a>
-				</div>
-				<div class="fallback">
-					<input name="file" type="file" multiple />
-				</div>
-			</form>
+            <form class="dropzone" id="my-dropzone" method="post" data-url="@Url.Action("GetUploadedFiles", "Home")">
+                <div class="dz-message">
+                    DragFiles <a>SelectFile</a>
+                </div>
+                <div class="fallback">
+                    <input name="file" type="file" multiple />
+                </div>
+            </form>
 
-			<div id="preview-template" class="dz-preview dz-file-preview" style="display:none">
-				<div class="dz-preview dz-file-preview">
-					<div class="dz-image"><img data-dz-thumbnail="" /></div>
-					<div class="dz-details">
-						<div class="dz-filename"><span data-dz-name></span></div>
-						<div class="dz-size" data-dz-size></div>
-					</div>
-					<div class="dz-progress hidden"><span class="dz-upload" data-dz-uploadprogress></span></div>
-					@*<div class="dz-error-mark"><span class="red">ERROR</span></div>
-					<div class="dz-error-message"><span data-dz-errormessage=""></span></div>*@
-					<i id="remove-file" class="cp cp-2x cp-icon-sml-cancel" data-dz-remove></i>
-				</div>
-			</div>
+            <div id="preview-template" class="dz-preview dz-file-preview" style="display:none">
+                <div class="dz-preview dz-file-preview">
+                    <div class="dz-image"><img data-dz-thumbnail="" /></div>
+                    <div class="dz-details">
+                        <div class="dz-filename"><span data-dz-name></span></div>
+                        <div class="dz-size" data-dz-size></div>
+                    </div>
+                    <div class="dz-progress hidden"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                    @*<div class="dz-error-mark"><span class="red">ERROR</span></div>
+                        <div class="dz-error-message"><span data-dz-errormessage=""></span></div>*@
+                    <i id="remove-file" class="cp cp-2x cp-icon-sml-cancel" data-dz-remove></i>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 <div class="row margin-top-25 ">
-	<div class="col-xs-12">
-		<button type="button" class="btn btn-info" id="btn-upload" onclick="UploadFiles()" data-url="@Url.Action("GetUploadedFiles", "Home")"> Upload </button>
-	</div>
+    <div class="col-xs-12">
+        <button type="button" class="btn btn-info" id="btn-upload" onclick="UploadFiles()" data-url="@Url.Action("GetUploadedFiles", "Home")"> Upload </button>
+    </div>
 </div>
+
+
+@if(Model != null) { 
+    <div class="blackboard" style="position:relative;width:1000;height:1000">
+        @foreach (var item in Model)
+        {
+            <div class="word" style="position:absolute;
+                                     width:@item.Width;
+                                     height:@item.Height;
+                                     top:@item.Top;
+                                     left:@item.Left;
+                                     font-size:@item.Height">
+                @item.text
+            </div>
+
+        }
+    </div>
+}

@@ -10,6 +10,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Improvision.Services;
+using Improvision.Models.InitialModels;
 
 namespace Improvision.Controllers
 {
@@ -29,27 +30,24 @@ namespace Improvision.Controllers
         public async Task<IActionResult> GetUploadedFiles()
         {
             var files = HttpContext.Request.Form.Files;
-
+            MicrosoftVisionAPIResult result = new MicrosoftVisionAPIResult();
             foreach (var formFile in files)
             {
                 if (formFile.Length > 0)
                 {
-                    if (formFile.Length > 0)
+                    var fileName = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName.Trim('"');
+                    using (var reader = new StreamReader(formFile.OpenReadStream()))
                     {
-                        var fileName = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName.Trim('"');
-                        using (var reader = new StreamReader(formFile.OpenReadStream()))
-                        {
 
-                            string contentAsString = reader.ReadToEnd();
-                            byte[] bytes = new byte[contentAsString.Length * sizeof(char)];
+                        string contentAsString = reader.ReadToEnd();
+                        byte[] bytes = new byte[contentAsString.Length * sizeof(char)];
 
-                            MicrosoftApiService microsoftApiService = new MicrosoftApiService();
-                            await microsoftApiService.GetImageJsonAsync(bytes);
-                        }
+                        MicrosoftApiService microsoftApiService = new MicrosoftApiService();
+                        result = await microsoftApiService.GetImageJsonAsync(bytes);
                     }
                 }
             }
-            return View();
+            return View(result.recognitionResult.lines.SelectMany(l => l.words));
         }
 
         public IActionResult Blackboard()
@@ -66,7 +64,7 @@ namespace Improvision.Controllers
 
         //    // full path to file in temp location
         //    var filePath = Path.GetTempFileName();
-                        
+
         //    foreach (var formFile in files)
         //    {
         //        if (formFile.Length > 0)
@@ -74,7 +72,7 @@ namespace Improvision.Controllers
 
         //            if (formFile.Length > 0)
         //            {
-                        
+
         //                var fileName = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName.Trim('"');
         //                using (var reader = new StreamReader(formFile.OpenReadStream()))
         //                {
@@ -85,7 +83,7 @@ namespace Improvision.Controllers
         //                    MicrosoftApiService microsoftApiService = new MicrosoftApiService();
         //                    await microsoftApiService.GetImageJsonAsync(bytes);
 
-                            
+
         //                }
         //            }
         //        }
@@ -95,5 +93,5 @@ namespace Improvision.Controllers
         //}
 
     }
-    
+
 }

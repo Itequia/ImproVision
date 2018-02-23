@@ -36,20 +36,22 @@ namespace Improvision.Controllers
                 if (formFile.Length > 0)
                 {
                     var fileName = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName.Trim('"');
-                    using (var reader = new StreamReader(formFile.OpenReadStream()))
+                    using (var reader = formFile.OpenReadStream())
                     {
-
-                        string contentAsString = reader.ReadToEnd();
-                        byte[] bytes = new byte[contentAsString.Length * sizeof(char)];
+                        byte[] bytes = GetImageAsByteArray(reader);
 
                         MicrosoftApiService microsoftApiService = new MicrosoftApiService();
                         result = await microsoftApiService.GetImageJsonAsync(bytes);
                     }
                 }
             }
-            return View(result.recognitionResult.lines.SelectMany(l => l.words));
+            return View("Index",result.recognitionResult.lines.SelectMany(l => l.words));
         }
-
+        static byte[] GetImageAsByteArray(Stream fileStream)
+        {
+            BinaryReader binaryReader = new BinaryReader(fileStream);
+            return binaryReader.ReadBytes((int)fileStream.Length);
+        }
         public IActionResult Blackboard()
         {
             ViewData["Message"] = "Your contact page.";

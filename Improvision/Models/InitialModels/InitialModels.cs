@@ -7,19 +7,21 @@ namespace Improvision.Models.InitialModels
 {
     public class MicrosoftVisionAPIResult
     {
-        public string language { get; set; }
-        public double textAngle { get; set; }
-        public string orientation { get; set; }
-        public List<region> regions { get; set; }
+        public string status { get; set; }
+        public bool succeeded { get; set; }
+        public bool failed { get; set; }
+        public bool finished { get; set; }
+        public recognitionResult recognitionResult { get; set; }
     }
 
-    public class region : Boxeable
+    public class recognitionResult
     {
         public List<line> lines { get; set; }
     }
 
     public class line : Boxeable
     {
+        public string text { get; set; }
         public List<word> words { get; set; }
     }
 
@@ -39,12 +41,46 @@ namespace Improvision.Models.InitialModels
                 return new BoundingBox
                 {
                     coordenadas = new Coordenada[] {
-                          new Coordenada{x = boundingBox[0], y = boundingBox[1]},
-                          new Coordenada{x = boundingBox[2], y = boundingBox[3]},
-                          new Coordenada{x = boundingBox[4], y = boundingBox[5]},
-                          new Coordenada{x = boundingBox[6], y = boundingBox[7]},
+                          new Coordenada{x = boundingBox[0], y = boundingBox[1]}, // 0
+                          new Coordenada{x = boundingBox[2], y = boundingBox[3]}, // 1
+                          new Coordenada{x = boundingBox[4], y = boundingBox[5]}, // 2
+                          new Coordenada{x = boundingBox[6], y = boundingBox[7]}, // 3
                     }
                 };
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                return Math.Max(boundingBox[5], boundingBox[7]) -
+                       Math.Min(boundingBox[1], boundingBox[3]);
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return Math.Max(boundingBox[2], boundingBox[4]) -
+                       Math.Min(boundingBox[0], boundingBox[6]);
+            }
+        }
+
+        public int Left
+        {
+            get
+            {
+                return Math.Min(boundingBox[0], boundingBox[6]);
+            }
+        }
+
+        public int Top
+        {
+            get
+            {
+                return Math.Min(boundingBox[1], boundingBox[3]);
             }
         }
     }

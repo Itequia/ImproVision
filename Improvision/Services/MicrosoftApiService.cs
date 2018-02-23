@@ -22,14 +22,14 @@ namespace Improvision.Services
         {
             HttpClient client = new HttpClient();
 
-            // Request headers.
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
+        //    // Request headers.
+        //    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
 
-            // Request parameters.
-            string requestParameters = "language=unk&detectOrientation=true&handwriting=true";
+        //    // Request parameters.
+        //    string requestParameters = "language=unk&detectOrientation=true&handwriting=true";
 
-            // Assemble the URI for the REST API Call.
-            string uri = uriBase + "?" + requestParameters;
+        //    // Assemble the URI for the REST API Call.
+        //    string uri = uriBase + "?" + requestParameters;
 
             // Request body. Posts a locally stored JPEG image.
 
